@@ -50,7 +50,7 @@ const  Login = () => {
             },
             (result:any)=>{
               userContext.dispatch({type:"success login", value: result})
-              navigation.navigate("Home")
+              navigation.replace("Home")
               setLoading(false)
             },
             (result:any)=>{
@@ -77,7 +77,7 @@ const  Login = () => {
         
           Storage.storeAuthData({id: result.id, token: result.token})
           userContext.dispatch({type:"success login", value: result})
-          navigation.navigate("Home")
+          navigation.replace("Home")
           setLoading(false)
         },
         (result:any)=>{

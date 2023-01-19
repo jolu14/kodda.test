@@ -19,11 +19,24 @@ type User = {
       medium: string,
       thumbnail: string
     },
+    phone: string,
+    cell: string,
+    nat: string,
+    location: {
+      street: {
+        number: number,
+        name: string,
+      },
+      city: string,
+      state: string,
+      country: string,
+      postcode: string,
+    },
 }
 
 type Action = {type: 'set users', value:any} 
 type Dispatch = (action: Action) => void
-type State = {users: User[]}
+type State = {users: User[], dict:{[id:string]:User }}
 type RandomUsersProviderProps = {children: React.ReactNode}
 
 const RandomUsersStateContext = React.createContext<{state: State; dispatch: Dispatch} | undefined>(undefined)
@@ -34,7 +47,11 @@ const RandomUsersStateContext = React.createContext<{state: State; dispatch: Dis
 function userRandomReducer(state: State, action: Action) {
     switch (action.type) {
       case 'set users': {
-        return {...state, users: action.value}
+        let dict :{[id:string]:User} = {}
+        action.value.map((item:User)=>{
+          dict[item.email] = item
+        })
+        return {...state, users: action.value, dict}
       }
       default: {
         throw new Error(`Unhandled action type: ${action.type}`)
@@ -43,7 +60,7 @@ function userRandomReducer(state: State, action: Action) {
 }
   
 function RandomUsersProvider({children}: RandomUsersProviderProps) {
-    const [state, dispatch] = React.useReducer(userRandomReducer, {users: []})
+    const [state, dispatch] = React.useReducer(userRandomReducer, {users: [], dict:{} })
     const value = {state, dispatch}
     return (
       <RandomUsersStateContext.Provider value={value}>

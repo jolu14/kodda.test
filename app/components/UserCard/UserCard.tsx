@@ -7,7 +7,7 @@ import Avatar from '../Avatar/Avatar';
 import styles from './UserCard.style'
 
 
-type UserCardProps = {
+type UserCardProps =  React.ComponentProps<typeof TouchableOpacity> & {
   email: string,
   name: string,
   image: string,
@@ -16,11 +16,11 @@ type UserCardProps = {
 
 const UserCard = (props: UserCardProps) =>{
 
-  const { image, name, email, userID } = props
+  const { image, name, email, userID, ...restOfProps } = props
 
  
     return (
-      <TouchableOpacity>
+      <TouchableOpacity {...restOfProps}>
         <View style={{...theme.row, ...theme.alignCenter, ...styles.container}}>
           <View><Avatar size="sm" image={image} /></View>
           <View style={theme.flex1}>

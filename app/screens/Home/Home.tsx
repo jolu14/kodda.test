@@ -29,7 +29,10 @@ function Home(){
   
   const logout = () =>{
     Storage.flushStorage()
-    navigation.popToTop()
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }]
+ })
   }
 
   const randomize = () =>{
@@ -62,7 +65,16 @@ function Home(){
         <FlatList
           data={randomUserContext.state.users}
           renderItem={({ item }) => (
-            <UserCard image={item.picture.thumbnail} email={item.email} name={`${item.name.first} ${item.name.last} `} userID={item.id} />
+            <UserCard 
+              image={item.picture.thumbnail} 
+              email={item.email} 
+              name={`${item.name.first} ${item.name.last} `} 
+              userID={item.id} 
+              onPress={()=>{
+                console.log(item.email)
+                navigation.navigate("Profile",{id:item.email})
+              }}
+              />
           )}
           keyExtractor={item => item.email}
         />

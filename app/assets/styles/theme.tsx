@@ -13,6 +13,7 @@ import { StyleSheet } from 'react-native';
 
 const colors = {
     // Basic colors
+    GRAY: "rgb(122, 125, 127)",
     WHITE: "rgb(241, 246, 253)",
 
     // Themed colors
@@ -43,6 +44,12 @@ const theme = StyleSheet.create({
     alignCenter:{
         alignItems:"center",
         justifyContent:"center"
+    },
+    bgPrimary:{
+        backgroundColor:colors.PRIMARY_COLOR
+    },
+    mt10:{
+        marginTop:120
     }
   
 });

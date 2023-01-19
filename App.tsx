@@ -15,12 +15,14 @@ import Login from './app/screens/Login/Login';
 import Home from './app/screens/Home/Home';
 import { UserProvider } from './app/contexts/UserContext';
 import { RandomUsersProvider } from './app/contexts/RandomUsersContext';
+import Profile from './app/screens/Profile/Profile';
 
 
 // Routes definitions
 export type RootStackParamList = {
   Home: undefined, // undefined because you aren't passing any params to the home screen
-  Login: undefined; 
+  Login: undefined,
+  Profile: {id:string}
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -43,6 +45,12 @@ function App(): JSX.Element {
                 <Stack.Screen 
                 name="Home" 
                 component={Home}   
+                options={{
+                  headerShown: false,
+                }}/>
+                  <Stack.Screen 
+                name="Profile" 
+                component={Profile}   
                 options={{
                   headerShown: false,
                 }}/>
