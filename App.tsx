@@ -14,6 +14,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './app/screens/Login/Login';
 import Home from './app/screens/Home/Home';
 import { UserProvider } from './app/contexts/UserContext';
+import { RandomUsersProvider } from './app/contexts/RandomUsersContext';
 
 
 // Routes definitions
@@ -30,6 +31,7 @@ function App(): JSX.Element {
   return (
    
       <UserProvider>
+        <RandomUsersProvider>
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen 
@@ -46,6 +48,7 @@ function App(): JSX.Element {
                 }}/>
             </Stack.Navigator>
         </NavigationContainer>
+        </RandomUsersProvider>
         </UserProvider>
 
   );

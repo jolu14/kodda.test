@@ -8,19 +8,22 @@
 import React from 'react';
 
 class API{
-    static getRandomUsersAPI = async (count:number) => {
-        try {
-          let response = await fetch(
-            `https://randomuser.me/api/?results=${count}`
-          );
-          let json = await response.json();
-       
-          return json.results;
-        } catch (error) {
-           console.error(error);
-        }
-      };
-    
+
+
+  static getRandomUsersAPI = async (count:number, callback=(response:any)=>{}) => {
+    try {
+      let response = await fetch(
+        `https://randomuser.me/api/?results=${count}`
+      );
+      let json = await response.json();
+      callback(json)
+      return json;
+    } catch (error) {
+       console.error(error);
+    }
+  };
+ 
+   
     
       static login = async (data: {username:string, password:string}, onSuccess=(result:any)=>{}, onError=(result:any)=>{}) => {
         try {

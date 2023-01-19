@@ -28,7 +28,21 @@ const theme = StyleSheet.create({
     container:{
         flex: 1,
         padding:10,
+        marginTop:30,
         backgroundColor: colors.WHITE
+    },
+    row:{
+        flexDirection:"row"
+    },
+    flex1:{
+        flex:1
+    },
+    flex2:{
+        flex:2
+    },
+    alignCenter:{
+        alignItems:"center",
+        justifyContent:"center"
     }
   
 });
